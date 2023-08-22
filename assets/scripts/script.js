@@ -3,8 +3,11 @@ $().ready(() => {
   $("#currentDay").text(dayjs().format("dddd MMMM D, YYYY"));
 
   const time = () => {
+    // Determines the current hour
     let activeHour = dayjs().subtract(8, "hours").hour();
 
+    /* Determines the style for each time block based on whether 
+    it is in the past, present, or future */
     $(".time-block").each(function () {
       let blockID = parseInt($(this).attr("id").split("-")[1]);
 
@@ -18,8 +21,6 @@ $().ready(() => {
         $(this).addClass("future");
       };
     });
-
-    console.log(activeHour); // remove later
   };
 
   // Loads data from local storage
@@ -57,6 +58,7 @@ $().ready(() => {
     }, 3000);
   };
 
+  // Function calls
   time();
   loadData();
   saveData();
